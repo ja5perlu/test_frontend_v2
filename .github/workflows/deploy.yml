@@ -37,6 +37,23 @@ jobs:
       - name: Generate static site
         run: pnpm run generate
 
+      - name: Prepare Pages output
+        run: |
+          echo "Workspace root listing:"
+          ls -la
+          echo "Checking for Nuxt output directories..."
+          if [ -d ".output/public" ]; then
+            echo "Found .output/public — copying to dist"
+            rm -rf dist || true
+            cp -a .output/public ./dist
+          elif [ -d "dist" ]; then
+            echo "Found dist — using it as-is"
+          else
+            echo "No static output found. Printing .output contents if any:"
+            ls -la .output || true
+            exit 1
+          fi
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
