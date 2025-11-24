@@ -258,17 +258,21 @@ const openDeleteDialog = (u: User) => {
 .label {
   width: 80px;
   color: var(--muted);
+  flex-shrink: 0;
 }
 .form-actions {
   display: flex;
   gap: 12px;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 .list-panel {
   padding: 10px 18px;
+  overflow-x: auto;
 }
 .user-table {
   width: 100%;
+  min-width: 500px;
   border-collapse: collapse;
 }
 .user-table th,
@@ -276,28 +280,233 @@ const openDeleteDialog = (u: User) => {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .user-table thead th {
   color: var(--muted);
   font-size: 0.95rem;
 }
+.user-table td:nth-child(1) {
+  max-width: 50px;
+}
+.user-table td:nth-child(2) {
+  max-width: 150px;
+}
+.user-table td:nth-child(3) {
+  max-width: 80px;
+}
+.user-table td:nth-child(4) {
+  max-width: none;
+}
 .actions {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
-/* responsive */
+/* Tablet & mobile responsive */
+@media (max-width: 768px) {
+  .page-root {
+    padding: 16px;
+    gap: 14px;
+  }
+  
+  .panel {
+    padding: 14px;
+    border-radius: 10px;
+  }
+  
+  .form-panel {
+    padding: 16px;
+  }
+  
+  .panel__title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .form-row {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .form-actions {
+    gap: 10px;
+  }
+  
+  .list-panel {
+    padding: 8px 10px;
+  }
+  
+  .user-table {
+    min-width: 450px;
+    font-size: 0.95rem;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 10px 8px;
+  }
+}
+
+/* Mobile responsive */
 @media (max-width: 480px) {
+  .page-root {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .panel {
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  .form-panel {
+    padding: 14px;
+  }
+  
+  .panel__title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  .form-row {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
   .label {
     width: 56px;
     font-size: 0.9rem;
   }
-  .panel {
-    padding: 14px;
+  
+  .form-actions {
+    gap: 8px;
+    
+    button {
+      flex: 1;
+      min-width: 0;
+    }
   }
+  
+  .list-panel {
+    padding: 6px 8px;
+    margin: 0 -4px;
+  }
+  
+  .user-table {
+    min-width: 400px;
+    font-size: 0.9rem;
+  }
+  
   .user-table th,
   .user-table td {
+    padding: 8px 6px;
+    font-size: 0.875rem;
+  }
+  
+  .user-table thead th {
+    font-size: 0.85rem;
+  }
+  
+  .actions {
+    gap: 6px;
+    
+    button {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.7rem;
+    }
+  }
+}
+
+/* Extra small mobile (320px) */
+@media (max-width: 360px) {
+  .page-root {
     padding: 8px;
+    gap: 10px;
+  }
+  
+  .panel {
+    padding: 10px;
+    border-radius: 6px;
+  }
+  
+  .form-panel {
+    padding: 12px;
+  }
+  
+  .panel__title {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  
+  .label {
+    width: 100%;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 8px;
+    
+    button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  .list-panel {
+    padding: 4px 6px;
+    margin: 0 -2px;
+  }
+  
+  .user-table {
+    min-width: 320px;
+    font-size: 0.8rem;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 6px 4px;
+    font-size: 0.8rem;
+  }
+  
+  .user-table thead th {
+    font-size: 0.75rem;
+  }
+  
+  .user-table th:first-child,
+  .user-table td:first-child {
+    padding-left: 6px;
+  }
+  
+  .user-table th:last-child,
+  .user-table td:last-child {
+    padding-right: 6px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    
+    button {
+      width: 100%;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.5rem;
+      justify-content: center;
+    }
   }
 }
 
@@ -334,12 +543,14 @@ dialog {
 .dialog-message {
   margin: 0 0 16px 0;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .dialog-actions {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .dialog-btn {
@@ -348,6 +559,7 @@ dialog {
   font-weight: 600;
   cursor: pointer;
   border: none;
+  min-width: 80px;
 }
 
 .dialog-btn--cancel {
@@ -364,11 +576,83 @@ dialog {
   transform: translateY(-1px);
 }
 
+.error-list {
+  margin: 0 0 16px 0;
+  padding-left: 20px;
+  
+  li {
+    margin-bottom: 6px;
+    word-break: break-word;
+  }
+}
+
 @media (max-width: 480px) {
   .confirm-dialog .dialog-form,
   .error-dialog .dialog-form {
-    width: 90vw;
+    min-width: auto;
     max-width: 90vw;
+    padding: 16px;
+  }
+  
+  .dialog-message {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+  
+  .dialog-actions {
+    gap: 8px;
+  }
+  
+  .dialog-btn {
+    padding: 7px 10px;
+    font-size: 0.9rem;
+    min-width: 70px;
+  }
+  
+  .error-list {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .confirm-dialog .dialog-form,
+  .error-dialog .dialog-form {
+    max-width: 95vw;
+    padding: 14px;
+    border-radius: 8px;
+  }
+  
+  .error-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .dialog-message {
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+  
+  .dialog-actions {
+    flex-direction: column-reverse;
+    gap: 6px;
+  }
+  
+  .dialog-btn {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.85rem;
+    min-width: 0;
+  }
+  
+  .error-list {
+    font-size: 0.85rem;
+    padding-left: 18px;
+    margin-bottom: 12px;
+    
+    li {
+      margin-bottom: 4px;
+    }
   }
 }
 </style>
