@@ -7,11 +7,9 @@ export default defineNuxtConfig({
   // set a base path so assets are referenced under '/<repo>/' instead of '/'.
   // This can be overridden by setting the NUXT_BASE environment variable in CI.
   app: {
-    baseURL: process.env.NUXT_BASE ? (process.env.NUXT_BASE.endsWith('/') ? process.env.NUXT_BASE : process.env.NUXT_BASE + '/') : '/test_frontend_v2/'
-  },
-  build: {
-    // publicPath determines where the `_nuxt` static assets are served from.
-    publicPath: (process.env.NUXT_BASE ? (process.env.NUXT_BASE.endsWith('/') ? process.env.NUXT_BASE : process.env.NUXT_BASE + '/') : '/test_frontend_v2/') + '_nuxt/'
+    baseURL: process.env.NUXT_BASE ? (process.env.NUXT_BASE.endsWith('/') ? process.env.NUXT_BASE : process.env.NUXT_BASE + '/') : '/test_frontend_v2/',
+    // Nuxt 3 handles asset paths automatically based on baseURL
+    buildAssetsDir: '_nuxt/'
   },
 
   modules: ['@nuxtjs/i18n', '@pinia/nuxt', '@nuxt/image', '@unocss/nuxt', '@nuxtjs/google-fonts'],

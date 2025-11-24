@@ -27,7 +27,7 @@ const normalize = (code?: string | null) => {
 const current = ref<string>(settings.locale || locale.value || 'zh-TW')
 
 const onChange = async () => {
-  const target = (normalize(current.value) || current.value) as string
+  const target = (normalize(current.value) || current.value) as 'zh-TW' | 'en-US'
   settings.setLocale(target)
   
   const path = switchLocalePath(target)
