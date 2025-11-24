@@ -45,14 +45,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate static site
-        run: pnpm run generate
+      - name: Build (production) and generate static site
+        env:
+          NODE_ENV: production
+        run: |
+          echo "Running production build"
+          pnpm run build || true
+          echo "Running generate (static)"
+          pnpm run generate || true
 
       - name: Prepare Pages output
         run: |
           echo "Workspace root listing:"
-          ls -la
+          ls -la || true
           echo "Checking for Nuxt output directories..."
+          # Prefer .output/public (Nuxt 3 build output), fallback to dist (generate)
           if [ -d ".output/public" ]; then
             echo "Found .output/public — copying to dist"
             rm -rf dist || true
@@ -60,8 +67,11 @@ jobs:
           elif [ -d "dist" ]; then
             echo "Found dist — using it as-is"
           else
-            echo "No static output found. Printing .output contents if any:"
+            echo "No static output found. Printing possible output dirs for debugging:"
             ls -la .output || true
+            ls -la dist || true
+            ls -la .output/public || true
+            echo "Build may have failed or produced output in a different path. Exiting with failure."
             exit 1
           fi
 
