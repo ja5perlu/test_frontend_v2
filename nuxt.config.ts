@@ -93,7 +93,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/reset.css', '~/assets/css/style.scss'],
   runtimeConfig: {
     public: {
-      apiBase: process.env.API_BASE_URL
+      apiBase: process.env.API_BASE_URL || 'https://54079.wu.elitepro.ltd'
     }
   },
 })
