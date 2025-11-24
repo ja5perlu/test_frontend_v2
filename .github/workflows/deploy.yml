@@ -48,8 +48,9 @@ jobs:
       - name: Build (production) and generate static site
         env:
           NODE_ENV: production
+          NUXT_BASE: '/test_frontend_v2/'
         run: |
-          echo "Running production build"
+          echo "Running production build (NUXT_BASE=$NUXT_BASE)"
           pnpm run build || true
           echo "Running generate (static)"
           pnpm run generate || true
