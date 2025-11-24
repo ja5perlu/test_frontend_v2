@@ -1,4 +1,41 @@
 {
   "welcome": "Welcome",
-  "test": "Test"
+  "test": "Test",
+  "actions": "Actions",
+  "label": {
+    "name": "Name",
+    "age": "Age"
+  },
+  "button": {
+    "add": "Add",
+    "modify": "Modify",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "close": "Close"
+  },
+  "table": {
+    "no": "#",
+    "actions": "Actions"
+  },
+  "validation": {
+    "title": "Validation Errors",
+    "name_required": "Name is required",
+    "age_invalid": "Please enter a valid age (1-150)"
+  },
+  "select_user": "Please select a user first",
+  "placeholder": {
+    "name": "Enter name",
+    "age": "Enter age"
+  },
+  "confirm": {
+    "add": "Confirm adding user?",
+    "modify": "Confirm modify user?",
+    "delete": "Confirm delete {name}?"
+  },
+  "alert": {
+    "add_failed": "Add failed",
+    "update_failed": "Update failed",
+    "delete_failed": "Delete failed"
+  }
 }

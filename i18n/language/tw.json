@@ -1,4 +1,41 @@
 {
   "welcome": "歡迎",
-  "test": "測試"
+  "test": "測試",
+  "actions": "操作",
+  "label": {
+    "name": "名字",
+    "age": "年齡"
+  },
+  "button": {
+    "add": "新增",
+    "modify": "修改",
+    "delete": "刪除",
+    "confirm": "確認",
+    "cancel": "取消",
+    "close": "關閉"
+  },
+  "table": {
+    "no": "#",
+    "actions": "操作"
+  },
+  "validation": {
+    "title": "驗證錯誤",
+    "name_required": "名字不得為空",
+    "age_invalid": "請輸入有效年齡 (1-150)"
+  },
+  "select_user": "請先選擇使用者",
+  "placeholder": {
+    "name": "輸入名字",
+    "age": "輸入年齡"
+  },
+  "confirm": {
+    "add": "確認新增使用者？",
+    "modify": "確認修改資料？",
+    "delete": "確認要刪除 {name} 嗎？"
+  },
+  "alert": {
+    "add_failed": "新增失敗",
+    "update_failed": "修改失敗",
+    "delete_failed": "刪除失敗"
+  }
 }
