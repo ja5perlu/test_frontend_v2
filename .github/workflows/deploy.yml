@@ -24,12 +24,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'pnpm'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: '9'
+
+      - name: Check Node and pnpm versions
+        run: |
+          echo "node:" $(node -v)
+          echo "npm:" $(npm -v)
+          echo "checking pnpm..."
+          if command -v pnpm >/dev/null 2>&1; then
+            pnpm -v
+          else
+            echo "pnpm not found"
+            exit 1
+          fi
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
